@@ -1,19 +1,24 @@
 #ifndef MINOS_HPP
 #define MINOS_HPP
 
-#include "cell.hpp"
+#include "coord.hpp"
 #include <vector>
 
 class Mino {
 public:
-  enum class minoType { I, O, T, S, Z, J, L };
-  enum class rotationState { Zero, Ninety, OneEighty, TwoSeventy };
-  Mino(minoType type);
+  const enum class Type { I, O, T, S, Z, J, L } type;
+  enum class rotationState { Spawn, CW, CCW, _180 } rotationState;
+  Mino(Type type);
+  bool rotateCW();
+  bool rotateCCW();
+  bool rotate180();
+  bool tryRotateCW();
+  bool tryRotateCCW();
+  bool tryRotate180();
 
 private:
-  const minoType type;
-  rotationState rotationState;
-  std::vector<Cell> cells;
+  Coord center;
+  std::vector<Coord> relativeCells;
 };
 
 #endif // MINOS_HPP
