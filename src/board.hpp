@@ -7,7 +7,7 @@
 class Board {
 public:
   enum class CellType { Empty, I, O, T, S, Z, J, L, Garbage };
-  Board(int width, int height);
+  Board(int width = 10, int height = 20);
   void clear();
   bool isOccupied(int x, int y) const;
   bool isValidPosition(const Mino &mino) const;
